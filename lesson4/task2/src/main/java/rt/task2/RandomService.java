@@ -12,4 +12,8 @@ public class RandomService {
     public int sendNumber() {
         return random.nextInt(0, 101);
     }
+    public int sendNumberWithin(int min, int max) {
+        return random.nextInt(min, max + 1);
+    }
+
 }

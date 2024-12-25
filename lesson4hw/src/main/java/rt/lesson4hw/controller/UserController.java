@@ -1,62 +1,40 @@
-package rt.ex3.controller;
+package rt.lesson4hw.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import rt.ex3.domain.User;
-import rt.ex3.repo.JSONificator;
-import rt.ex3.service.RegService;
+import rt.lesson4hw.domain.User;
+import rt.lesson4hw.repo.JSONificator;
+import rt.lesson4hw.service.RegService;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/user")
+@Controller
 public class UserController {
 
     @Autowired
     private RegService service;
 
-    @GetMapping
-    public List<User> userList() {
-        return service.getDataProcService().getRepository().getUsers();
+    @GetMapping("/users")
+    public String userList(Model model) {
+        model.addAttribute("users", service.getDataProcService().getRepository().getUsers());
+        return "users";
     }
 
-    @PostMapping("/body")
-    public String userAddFromBody(@RequestBody User user) {
-        service.getDataProcService().getRepository().getUsers().add(user);
+    @PostMapping("/users")
+    public String addUser(User user, Model model) {
+        service.getDataProcService().addNew(user);
+        model.addAttribute("users", service.getDataProcService().getRepository().getUsers());
         saveToJSON();
-        return "user is added from body";
+        return "users";
     }
 
-    @PostMapping("/add")
-    public String userAddFromParam(@RequestParam(required = false) String name,
-                                   @RequestParam(required = false) String familyName,
-                                   @RequestParam(required = false) int birthYear,
-                                   @RequestParam(required = false) int birthMonth,
-                                   @RequestParam(required = false) int birthDay,
-                                   @RequestParam(required = false) long phoneNumber) {
-        service.processRegistration(name, familyName, birthYear, birthMonth, birthDay, phoneNumber);
-        saveToJSON();
-        return "added new user";
-    }
-
-    @PutMapping("/update/{id}")
-    public String updateUser(@PathVariable int id,
-                             @RequestParam(required = false) String name,
-                             @RequestParam(required = false) String familyName,
-                             @RequestParam(required = false) int birthYear,
-                             @RequestParam(required = false) int birthMonth,
-                             @RequestParam(required = false) int birthDay,
-                             @RequestParam(required = false) long phoneNumber) {
-        service.updateUserRegInfo(id, name, familyName, birthYear, birthMonth, birthDay, phoneNumber);
-        saveToJSON();
-        return "updated user with id " + id;
-    }
-
-    @DeleteMapping("/remove/{id}")
+    @GetMapping("/user-delete/{id}")
     public String removeUserByID(@PathVariable int id) {
         service.removeUserWithID(id);
         saveToJSON();
-        return "removed user with id " + id;
+        return "redirect:/users";
     }
 
     private void saveToJSON() {

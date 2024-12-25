@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="rus" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User list</title>
+</head>
+
+<body>
+<h1>Users</h1>
+<h2>Add user</h2>
+<form action="/users" method="post">
+    Name: <input type="text" name="name"><br/>
+    Family name: <input type="text" name="familyName"><br/>
+    Year of birth: <input type="number" step="any" name="birthYear"><br/>
+    Month of birth: <input type="number" step="any" name="birthMonth"><br/>
+    Day of birth: <input type="number" step="any" name="birthDay"><br/>
+    Phone #: <input type="number" step="any" name="phoneNumber"><br/>
+    <button type="submit">Add user</button>
+</form>
+<p> </p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Family name</th>
+        <th>Age (y.o.)</th>
+        <th>Phone #</th>
+    </tr>
+    <tr th:each="u: ${users}">
+        <td th:text="${u.id}"></td>
+        <td th:text="${u.name}"></td>
+        <td th:text="${u.familyName}"></td>
+        <td th:text="${u.currentAge}"></td>
+        <td th:text="${u.phoneNumber}"></td>
+        <td><a th:href="@{user-delete/{id}(id=${u.id})}">Delete</a></td>
+    </tr>
+</table>
+
+</body>
+</html>

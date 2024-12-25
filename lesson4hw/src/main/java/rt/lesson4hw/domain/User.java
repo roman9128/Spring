@@ -1,4 +1,4 @@
-package rt.ex3.domain;
+package rt.lesson4hw.domain;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -9,6 +9,7 @@ public class User {
     private final int id;
     private String name;
     private String familyName;
+    private int birthYear, birthMonth, birthDay;
     private LocalDate birthDate;
     private int currentAge;
     private long phoneNumber;
@@ -16,6 +17,10 @@ public class User {
 
     public User() {
         this.id = userCount++;
+        birthYear = 1900;
+        birthMonth = 1;
+        birthDay = 1;
+        setBirthDate();
     }
 
     public int getId() {
@@ -42,8 +47,35 @@ public class User {
         return birthDate;
     }
 
-    public void setBirthDate(int year, int month, int day) {
-        this.birthDate = LocalDate.of(year, month, day);
+    public int getBirthYear() {
+        return birthYear;
+    }
+
+    public void setBirthYear(int birthYear) {
+        this.birthYear = birthYear;
+        setBirthDate();
+    }
+
+    public int getBirthMonth() {
+        return birthMonth;
+    }
+
+    public void setBirthMonth(int birthMonth) {
+        this.birthMonth = birthMonth;
+        setBirthDate();
+    }
+
+    public int getBirthDay() {
+        return birthDay;
+    }
+
+    public void setBirthDay(int birthDay) {
+        this.birthDay = birthDay;
+        setBirthDate();
+    }
+
+    public void setBirthDate() {
+        this.birthDate = LocalDate.of(birthYear, birthMonth, birthDay);
         this.currentAge = Long.valueOf(birthDate.until(LocalDate.now(), ChronoUnit.YEARS)).intValue();
     }
 

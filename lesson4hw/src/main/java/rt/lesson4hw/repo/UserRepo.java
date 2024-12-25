@@ -1,7 +1,8 @@
-package rt.ex3.repo;
+package rt.lesson4hw.repo;
 
 import org.springframework.stereotype.Component;
-import rt.ex3.domain.User;
+import rt.lesson4hw.domain.User;
+
 
 import java.io.File;
 import java.util.ArrayList;

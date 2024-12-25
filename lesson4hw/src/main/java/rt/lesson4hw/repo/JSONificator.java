@@ -1,14 +1,13 @@
-package rt.ex3.repo;
+package rt.lesson4hw.repo;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import rt.ex3.domain.User;
+import rt.lesson4hw.domain.User;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class JSONificator {
 
@@ -23,7 +22,6 @@ public class JSONificator {
             System.out.println(ex.getMessage());
         }
     }
-
 
     public static ArrayList<User> readFromJSON() {
         File file = new File(FILE_NAME);

@@ -10,4 +10,6 @@ public class Lesson4hwApplication {
 		SpringApplication.run(Lesson4hwApplication.class, args);
 	}
 
+	//Разработайте веб-приложение с использованием Spring MVC и Thymeleaf,
+	//которое отображает список пользователей из базы данных
 }
