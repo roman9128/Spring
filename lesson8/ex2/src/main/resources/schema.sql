@@ -1,0 +1,5 @@
+create TABLE account (
+id SERIAL PRIMARY KEY,
+name VARCHAR(50) NOT NULL,
+amount DOUBLE NOT NULL
+);
