@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="MicroserviceA" />
+        <module name="ServiceEureka" />
+        <module name="MicroserviceB" />
+        <module name="Bridge" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Bridge" options="-parameters" />
+      <module name="MicroserviceA" options="-parameters" />
+      <module name="MicroserviceB" options="-parameters" />
+      <module name="ServiceEureka" options="-parameters" />
+    </option>
+  </component>
+</project>

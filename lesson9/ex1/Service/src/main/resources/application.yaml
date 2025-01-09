@@ -1,0 +1,15 @@
+server:
+  port: 8765
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: MicroserviceA
+          uri: http://localhost:8081/
+          predicates:
+            - Path=/serviceA/**
+        - id: MicroserviceB
+          uri: http://localhost:8082/
+          predicates:
+            - Path=/serviceB/**
